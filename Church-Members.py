@@ -4,7 +4,7 @@ import Pages.Clientes.Create as PageCreate
 import Pages.Clientes.Query as PageQuery
 
 # Caminho da sua logo
-logo_path = "C:/Users/mhele/Downloads/grupo-de-usuarios.png"
+logo_path = "C: / Users/mhele/Documents/VisualCode/PROJETO/grupo-de-usuarios.png"
 
 
 # Exibindo a logo e o título
