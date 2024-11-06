@@ -9,7 +9,7 @@
 - `Pages/`: Contém as páginas da aplicação.
 - `Controllers/`: Contém os controladores da aplicação.
 - `services/database.py`: Conexão com o banco de dados.
-- `membros.py` :Armazena as principais classes da aplicação
+- `membros.py`: Representa a estrutura de dados de um membro da igreja
 - `requirements.txt`: Contém as bibliotecas da aplicação
 
 ### Configuração do Ambiente
