@@ -145,7 +145,6 @@ def create(paramId=None):
 
         # Limpa os parâmetros de consulta e recarrega a página
         st.query_params.clear()
-        st.rerun()  # Recarrega a página
 
 
 if __name__ == "__main__":

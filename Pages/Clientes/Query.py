@@ -24,6 +24,7 @@ def login():
         if username == USERNAME and password == PASSWORD:
             st.session_state['authenticated'] = True
             st.success("Login bem-sucedido!")
+
             st.rerun()
         else:
             st.error("Usuário ou senha incorretos.")
@@ -82,7 +83,7 @@ def query():
                 if on_click_excluir:
                     try:
                         MembrosControllers.excluir_membro(int(item.id))
-                        st.experimental_rerun()  # Recarrega a página após exclusão
+                        st.rerun()  # Recarrega a página após exclusão
                     except ValueError as e:
                         st.error(f"Erro de valor: {e}")
 

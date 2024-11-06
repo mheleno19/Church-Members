@@ -7,7 +7,11 @@ sys.path.append(r'C:\Users\mhele\Documents\VisualCode\PROJETO')
 
 
 def incluir_membro(nome, idade, data_nascimento, telefone, rua, complemento, cidade, estado, codigo_postal, estado_civil, ministerio):
+    cursor = None
     try:
+        if db.conexao is None:
+            raise ConnectionError("Falha na conexão com o banco de dados.")
+
         cursor = db.conexao.cursor()
         inserir_sql = """
         INSERT INTO membros (nome, idade, data_nascimento, telefone, rua, complemento, cidade, estado, codigo_postal, estado_civil, ministerio)
@@ -20,26 +24,43 @@ def incluir_membro(nome, idade, data_nascimento, telefone, rua, complemento, cid
         db.conexao.commit()
         print("Membro inserido com sucesso!")
     except Exception as e:
-        db.conexao.rollback()
+        if db.conexao:
+            db.conexao.rollback()
         print(f"Erro ao inserir membro: {e}")
+    finally:
+        if cursor:
+            cursor.close()
 
 
 def excluir_membro(id):
+    cursor = None
     try:
         if not isinstance(id, int):
             raise ValueError("O valor do id deve ser um inteiro")
+
+        if db.conexao is None:
+            raise ConnectionError("Falha na conexão com o banco de dados.")
+
         cursor = db.conexao.cursor()
         excluir_sql = """DELETE FROM MEMBROS WHERE id = %s"""
         cursor.execute(excluir_sql, (id,))
         db.conexao.commit()
         print("Membro excluído com sucesso!")
     except Exception as e:
-        db.conexao.rollback()
+        if db.conexao:
+            db.conexao.rollback()
         print(f"Erro ao excluir membro: {e}")
+    finally:
+        if cursor:
+            cursor.close()
 
 
 def selecionar_todos():
+    cursor = None
     try:
+        if db.conexao is None:
+            raise ConnectionError("Falha na conexão com o banco de dados.")
+
         cursor = db.conexao.cursor()
         cursor.execute("SELECT * FROM MEMBROS")
         lista_membros = []
@@ -49,13 +70,21 @@ def selecionar_todos():
             ))
         return lista_membros
     except Exception as e:
-        db.conexao.rollback()
+        if db.conexao:
+            db.conexao.rollback()
         print(f"Erro ao selecionar membros: {e}")
         return []
+    finally:
+        if cursor:
+            cursor.close()
 
 
 def selecionar_id(id):
+    cursor = None
     try:
+        if db.conexao is None:
+            raise ConnectionError("Falha na conexão com o banco de dados.")
+
         cursor = db.conexao.cursor()
         cursor.execute("SELECT * FROM MEMBROS WHERE id = %s", (id,))
         row = cursor.fetchone()
@@ -66,13 +95,21 @@ def selecionar_id(id):
             return membro
         return None
     except Exception as e:
-        db.conexao.rollback()
+        if db.conexao:
+            db.conexao.rollback()
         print(f"Erro ao selecionar membro: {e}")
         return None
+    finally:
+        if cursor:
+            cursor.close()
 
 
 def editar_membro(id, nome, idade, data_nascimento, telefone, rua, complemento, cidade, estado, codigo_postal, estado_civil, ministerio):
+    cursor = None
     try:
+        if db.conexao is None:
+            raise ConnectionError("Falha na conexão com o banco de dados.")
+
         cursor = db.conexao.cursor()
         editar_sql = """
         UPDATE membros
@@ -86,5 +123,9 @@ def editar_membro(id, nome, idade, data_nascimento, telefone, rua, complemento, 
         db.conexao.commit()
         print("Membro editado com sucesso!")
     except Exception as e:
-        db.conexao.rollback()
+        if db.conexao:
+            db.conexao.rollback()
         print(f"Erro ao editar membro: {e}")
+    finally:
+        if cursor:
+            cursor.close()
