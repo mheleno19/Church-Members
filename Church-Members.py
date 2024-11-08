@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
-import Pages.Clientes.Create as PageCreate
-import Pages.Clientes.Query as PageQuery
+import Pages.Membros.Create as PageCreate
+import Pages.Membros.Query as PageQuery
 
 st.title("Church Members")
 st.sidebar.title("Menu")
