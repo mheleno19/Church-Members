@@ -2,7 +2,6 @@ import psycopg2
 
 # Função para conectar ao banco de dados
 
-
 def conectar_bd():
     try:
         conexao = psycopg2.connect(

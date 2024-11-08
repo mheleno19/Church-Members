@@ -8,8 +8,8 @@ import Pages.Clientes.Create as PageCreate
 sys.path.append(r'C:\Users\mhele\Documents\VisualCode\PROJETO')
 
 # Definindo as credenciais
-USERNAME = "admin"
-PASSWORD = "admin123"  # Troque pela sua senha desejada
+USERNAME = "pastor"
+PASSWORD = "admin123"
 
 
 def login():
@@ -44,6 +44,7 @@ def query():
         st.markdown(
             "<h1 style='font-size:24px;'>Consultar Membros</h1>", unsafe_allow_html=True)
 
+        # Puxando os dados do BD
         membros_list = MembrosControllers.selecionar_todos()
         if not membros_list:
             st.write("Nenhum membro encontrado.")

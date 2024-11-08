@@ -9,11 +9,12 @@ sys.path.append(r'C:\Users\mhele\Documents\VisualCode\PROJETO')
 
 
 def create(paramId=None):
-    # Acessa os parâmetros de consulta diretamente
+    # Acessando os parâmetros de consulta diretamente
     query_params = st.query_params
     membroBD = None  # Recuperando o cadastro do membro do BD
 
-    if paramId is not None:  # Use paramId se for passado
+    # IF para saber se vai criar ou editar membros
+    if paramId is not None:
         idEditar = int(paramId)  # Converter o ID para inteiro
         membroBD = MembrosControllers.selecionar_id(idEditar)
         st.markdown("<h1 style='font-size:24px;'>Alterar Membro</h1>",
@@ -134,6 +135,8 @@ def create(paramId=None):
                 input_state, input_zip, input_civil_status, input_ministry
             )
             st.success("Membro cadastrado com sucesso!")
+            st.rerun
+
         else:
             # Edição de membro existente
             MembrosControllers.editar_membro(
@@ -142,8 +145,10 @@ def create(paramId=None):
                 input_state, input_zip, input_civil_status, input_ministry
             )
             st.success("Membro alterado com sucesso!")
+            st.rerun
 
         # Limpa os parâmetros de consulta e recarrega a página
+        st.rerun
         st.query_params.clear()
 
 

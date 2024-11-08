@@ -23,6 +23,7 @@ def incluir_membro(nome, idade, data_nascimento, telefone, rua, complemento, cid
         cursor.execute(inserir_sql, valores)
         db.conexao.commit()
         print("Membro inserido com sucesso!")
+
     except Exception as e:
         if db.conexao:
             db.conexao.rollback()
